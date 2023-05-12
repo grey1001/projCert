@@ -1,3 +1,2 @@
-FROM devopsedu/employee:LATEST
-COPY ./website/www/html
-ADD ./website/config.php
+FROM devopsedu/employee:latest
+COPY /website/config.php .
