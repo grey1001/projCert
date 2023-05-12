@@ -1,2 +1,3 @@
 FROM devopsedu/employee:LATEST
-COPY Update home.php /.
+COPY ./website/www/html
+ADD ./website/config.php
