@@ -2,7 +2,8 @@ pipeline {
     agent {
         label 'agent1'
 }
-    tools {
+   }
+   tools {
   jdk 'myjava'
   ansible 'ansible'
   
@@ -49,3 +50,4 @@ pipeline {
                 }
             }
         }
+    }
