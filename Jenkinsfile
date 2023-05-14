@@ -11,8 +11,7 @@ pipeline {
     environment {
       DOCKER_IMAGE_NAME = "greyabiwon/edureka-devops"
     }
-            
-    stages {
+      stages {
         stage('Checkout Source') {
             steps {
                 git 'https://github.com/grey1001/projCert.git'
