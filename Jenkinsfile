@@ -6,8 +6,9 @@ pipeline {
         ansible 'ansible'
     }
     environment {
-        DOCKER_IMAGE_NAME = "greyabiwon/edureka-devops"
-        CONTAINER_NAME = "edureka-devops:42"
+        DOCKER_IMAGE_NAME = "edureka-devops:42"
+            
+        CONTAINER_NAME = "greyabiwon/edureka-devops"
     }
     stages {
         stage("Clone Source") {
