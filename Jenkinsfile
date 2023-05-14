@@ -14,16 +14,16 @@ pipeline {
                 git url: 'https://github.com/grey1001/projCert.git'
             }
         }
-  #      stage('Execute playbook') {
-   #         steps {
-                echo 'Installing Docker on agent'
-                ansiblePlaybook(
-                    become: true,
-                    credentialsId: 'ansiblemaster',
-                    disableHostKeyChecking: true,
-                    installation: 'ansible',
-                    inventory: '/etc/ansible/hosts',
-                    playbook: '/home/user2/jenkins/workspace/devopsproject2/playbook.yml'
+  //    stage('Execute playbook') {
+   //         steps {
+     //           echo 'Installing Docker on agent'
+       //         ansiblePlaybook(
+         //           become: true,
+           //         credentialsId: 'ansiblemaster',
+             //       disableHostKeyChecking: true,
+               //     installation: 'ansible',
+                 //   inventory: '/etc/ansible/hosts',
+                   // playbook: '/home/user2/jenkins/workspace/devopsproject2/playbook.yml'
                 )
             }
         }
