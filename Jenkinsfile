@@ -7,6 +7,7 @@ pipeline {
     }
     environment {
         DOCKER_IMAGE_NAME = "greyabiwon/edureka-devops"
+        CONTAINER_NAME = "my-container"
     }
     stages {
         stage("Clone Source") {
@@ -22,6 +23,14 @@ pipeline {
                     app.inside {
                         sh 'echo Hello, World!'
                     }
+                }
+            }
+        }
+        
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    def app = docker.image(DOCKER_IMAGE_NAME)
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhublogin') {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
@@ -29,6 +38,17 @@ pipeline {
                 }
             }
         }
+        
+        stage('Deploy Container') {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhublogin') {
+                        def app = docker.image(DOCKER_IMAGE_NAME)
+                        def container = app.run("-d", "--name", CONTAINER_NAME)
+                        // Additional deployment steps
+                    }
+                }
+            }
+        }
     }
 }
-
