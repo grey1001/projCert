@@ -43,7 +43,6 @@ pipeline {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', '0aee2bc9-4266-4bf6-8106-1bb49fbc3ea0') {
                         def app = docker.image(DOCKER_IMAGE_NAME)
-                        app.run("--name", devops-edureka)
                         // Additional deployment steps
                     }
                 }
