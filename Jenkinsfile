@@ -23,7 +23,7 @@ pipeline {
                     disableHostKeyChecking: true,
                     installation: 'ansible',
                     inventory: '/etc/ansible/hosts',
-                    playbook: '/etc/ansible/playbook.yml'
+                    playbook: '/home/user2/jenkins/workspace/devopsproject2/playbook.yml'
                 )
             }
         }
