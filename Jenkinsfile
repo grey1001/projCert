@@ -16,9 +16,6 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            when {
-                branch 'master'
-            }
             steps {
                 script {
                     def app = docker.build(DOCKER_IMAGE_NAME)
@@ -34,3 +31,4 @@ pipeline {
         }
     }
 }
+
