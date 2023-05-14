@@ -6,9 +6,7 @@ pipeline {
         ansible 'ansible'
     }
     environment {
-        DOCKER_IMAGE_NAME = "edureka-devops:42"
-            
-        CONTAINER_NAME = "greyabiwon/edureka-devops"
+        DOCKER_IMAGE_NAME = "greyabiwon/edureka-devops"
     }
     stages {
         stage("Clone Source") {
@@ -45,7 +43,7 @@ pipeline {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', '0aee2bc9-4266-4bf6-8106-1bb49fbc3ea0') {
                         def app = docker.image(DOCKER_IMAGE_NAME)
-                        app.run("--name", CONTAINER_NAME)
+                        app.run("--name", devops-edureka)
                         // Additional deployment steps
                     }
                 }
