@@ -16,7 +16,7 @@ pipeline {
         }
       
         stage('Build Docker Image') {
-            when {
+            where {
                 branch 'master'
             }
             steps {
@@ -29,7 +29,7 @@ pipeline {
             }
         }
         stage('Push Docker Image') {
-            when {
+            where {
                 branch 'master'
             }
             steps {
