@@ -3,7 +3,6 @@ pipeline {
         label 'agent1'
     }
     tools {
-        jdk 'myjava'
         ansible 'ansible'
     }
     environment {
@@ -24,7 +23,7 @@ pipeline {
                     disableHostKeyChecking: true,
                     installation: 'ansible',
                     inventory: '/etc/ansible/hosts',
-                    playbook: '/home/user2/playbook.yml'
+                    playbook: '/etc/ansible/playbook.yml'
                 )
             }
         }
