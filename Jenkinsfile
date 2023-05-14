@@ -44,7 +44,7 @@ pipeline {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', '0aee2bc9-4266-4bf6-8106-1bb49fbc3ea0') {
                         def app = docker.image(DOCKER_IMAGE_NAME)
-                        def container = app.container(CONTAINER_NAME).run("-d")
+                        app.run("-d", "--name", CONTAINER_NAME)
                         // Additional deployment steps
                     }
                 }
