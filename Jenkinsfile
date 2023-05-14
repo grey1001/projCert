@@ -7,7 +7,7 @@ pipeline {
     }
     environment {
         DOCKER_IMAGE_NAME = "greyabiwon/edureka-devops"
-        CONTAINER_NAME = "edureka-devops:latest"
+        CONTAINER_NAME = "edureka-devops:42"
     }
     stages {
         stage("Clone Source") {
