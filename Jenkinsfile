@@ -31,7 +31,7 @@ pipeline {
             steps {
                 script {
                     def app = docker.image(DOCKER_IMAGE_NAME)
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhublogin') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
@@ -42,7 +42,7 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhublogin') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
                         def app = docker.image(DOCKER_IMAGE_NAME)
                         def container = app.run("-d", "--name", CONTAINER_NAME)
                         // Additional deployment steps
