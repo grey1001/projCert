@@ -14,9 +14,9 @@ pipeline {
                 git url: 'https://github.com/grey1001/projCert.git'
             }
         }
-      
+
         stage('Build Docker Image') {
-            where {
+            when {
                 branch 'master'
             }
             steps {
@@ -25,15 +25,6 @@ pipeline {
                     app.inside {
                         sh 'echo Hello, World!'
                     }
-                }
-            }
-        }
-        stage('Push Docker Image') {
-            where {
-                branch 'master'
-            }
-            steps {
-                script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
