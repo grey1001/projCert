@@ -9,7 +9,7 @@ pipeline {
         DOCKER_IMAGE_NAME = "greyabiwon/edureka-devops"
     }
     stages {
-        stage("Checkout Source") {
+        stage("Clone Source") {
             steps {
                 git url: 'https://github.com/grey1001/projCert.git'
             }
