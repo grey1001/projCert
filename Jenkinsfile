@@ -7,7 +7,7 @@ pipeline {
         dockerTool 'mydocker'
     }
     environment {
-        DOCKER_IMAGE_NAME = "greyabiwon/spring-boot-docker:v1"
+        DOCKER_IMAGE_NAME = "greyabiwon/spring-boot-docker:v7"
     }
     stages {
         stage("Clone Source") {
