@@ -1,51 +1,46 @@
 pipeline {
     agent {
-        label 'agent1'
+        label 'master_node'
     }
     tools {
-        ansible 'ansible'
+        maven 'mymaven'
+        dockerTool 'mydocker'
     }
     environment {
-        DOCKER_IMAGE_NAME = "greyabiwon/edureka-devops"
+        DOCKER_IMAGE_NAME = "greyabiwon/spring-boot-docker:v1"
     }
     stages {
         stage("Clone Source") {
             steps {
-                git url: 'https://github.com/grey1001/projCert.git'
+                git url: 'https://github.com/grey1001/spring-boot-docker.git'
             }
         }
-
+        stage("Build") {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
                     def app = docker.build(DOCKER_IMAGE_NAME)
-                    app.inside {
-                        sh 'echo Hello, World!'
-                    }
                 }
             }
         }
-        
         stage('Push Docker Image') {
             steps {
                 script {
                     def app = docker.image(DOCKER_IMAGE_NAME)
-                    docker.withRegistry('https://registry.hub.docker.com', '0aee2bc9-4266-4bf6-8106-1bb49fbc3ea0') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-login') {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
                 }
             }
         }
-        
-        stage('Deploy Container') {
+        stage("deploytok8s") {
             steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', '0aee2bc9-4266-4bf6-8106-1bb49fbc3ea0') {
-                        def app = docker.image(DOCKER_IMAGE_NAME)
-                        // Additional deployment steps
-                    }
-                }
+                sh 'kubectl apply -f springapp.yml'
             }
         }
     }
